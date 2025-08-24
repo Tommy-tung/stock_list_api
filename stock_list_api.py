@@ -21,7 +21,7 @@ def echo():
     json_string = data.get('stock_json')
     # df = pd.read_excel('s&p500_data.xlsx')
     df = pd.read_excel('data2.xlsx')
-    df['代碼'] = [item.split()[0] for item in df['代碼']]
+    # df['代碼'] = [item.split()[0] for item in df['代碼']]
 
 
 
