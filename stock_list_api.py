@@ -19,7 +19,8 @@ def echo():
 
     data = request.get_json()
     json_string = data.get('stock_json')
-    df = pd.read_excel('s&p500_data.xlsx')
+    # df = pd.read_excel('s&p500_data.xlsx')
+    df = pd.read_excel('data2.xlsx')
     df['代碼'] = [item.split()[0] for item in df['代碼']]
 
 
@@ -38,8 +39,8 @@ def echo():
                 label_mask = pd.Series([True] * len(df))  # 預設為全 True
 
                 if query_type == "keyword" and query == "欄位中包含任一關鍵字":
-                    columns = [col["item"] for col in label.get("columns", [])]
-                    keywords = [kw["item"] for kw in label.get("keywords", [])]
+                    columns = label.get("columns", [])
+                    keywords = label.get("keywords", [])
 
                     label_mask = df[columns].apply(
                         lambda col: col.astype(str).apply(lambda val: any(keyword in val for keyword in keywords))
